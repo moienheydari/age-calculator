@@ -1,33 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../css/main.min.css';
 
 export default function Main() {
+    const [date, setDate] = useState({
+        day: '',
+        month: '',
+        year: ''
+    });
+
+    function handleChange({ target }) {
+        setDate((prev) => {
+            return {
+                ...prev,
+                [target.name] : target.value
+            }
+        })
+    }
+
     return (
         <div className='main'>
             <div className='upper'>
                 <label>
                     <br />
-                    <input type='text' placeholder='Hi'>
-
-                    </input>
+                    <input
+                        name='day'
+                        value={date.day}
+                        type='text'
+                        placeholder='Hi'
+                        onChange={handleChange}
+                    ></input>
                     <div className='label'>
                         DAY
                     </div>
                 </label>
                 <label>
                     <br />
-                    <input type='text' placeholder='Hi'>
-
-                    </input>
+                    <input
+                        name='month'
+                        value={date.month}
+                        type='text'
+                        placeholder='Hi'
+                        onChange={handleChange}
+                    ></input>
                     <div className='label'>
                         MONTH
                     </div>
                 </label>
                 <label>
                     <br />
-                    <input type='text' placeholder='Hi'>
-
-                    </input>
+                    <input
+                        name='year'
+                        value={date.year}
+                        type='text'
+                        placeholder='Hi'
+                        onChange={handleChange}
+                    ></input>
                     <div className='label'>
                         YEAR
                     </div>
