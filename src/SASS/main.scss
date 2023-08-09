@@ -25,6 +25,11 @@
                 transition: 0.3s ease;
             }
 
+            .label.errorr {
+                color: hsl(0, 100%, 67%);
+
+            }
+
             input {
                 caret-color: rgb(122, 114, 114);
                 margin: 2px 7px 10px 1px;
@@ -35,6 +40,11 @@
                 padding: 10px;
                 border: 1px solid hsl(0, 0%, 80%);
                 border-radius: 4px;
+
+            }
+            
+            input.number-error {
+                outline: 1px hsl(0, 100%, 67%) solid;
             }
 
             input::placeholder {
@@ -46,6 +56,36 @@
                 left: 0px;
                 top: 0px;
                 font-size: 16px;
+            }
+
+            
+            .error.number-error::after {
+                width: 100px;
+                position: absolute;
+                top: 15px;
+                left: 0;
+                content: 'Numbers Only*';
+                color: hsl(0, 100%, 67%);
+                font-size: 12px;
+                font-style: italic;
+            }
+            
+            .error {
+                position: absolute;
+                top: 90px;
+                left: 2px;
+                color: transparent;
+                font-size: 12px;
+                font-style: italic;
+            }
+
+            .error.rule-error {
+                position: absolute;
+                top: 90px;
+                left: 2px;
+                color: hsl(0, 100%, 67%);
+                font-size: 12px;
+                font-style: italic;
             }
         }
     }
