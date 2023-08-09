@@ -1,36 +1,39 @@
 import React from 'react';
 import '../css/main.min.css';
 
-export default function Main () {
+export default function Main() {
     return (
         <div className='main'>
             <div className='upper'>
-            <label>
-                DAY
-                <input type='text'>
+                <label>
+                    DAY
+                    <br />
+                    <input type='text'>
 
-                </input>
-            </label>
-            <label>
-                MONTH
-                <input type='text'>
+                    </input>
+                </label>
+                <label>
+                    MONTH
+                    <br />
+                    <input type='text'>
 
-                </input>
-            </label>
-            <label>
-                YEAR
-                <input type='text'>
+                    </input>
+                </label>
+                <label>
+                    YEAR
+                    <br />
+                    <input type='text'>
 
-                </input>
-            </label>
+                    </input>
+                </label>
             </div>
             <button>
                 Cl!
             </button>
             <div className='lower'>
-                <span>_ _</span> <span>years</span> <br/>
-                <span>_ _</span> <span>months</span> <br/>
-                <span>_ _</span> <span>days</span> <br/>
+                <span>_ _</span> <span>years</span> <br />
+                <span>_ _</span> <span>months</span> <br />
+                <span>_ _</span> <span>days</span> <br />
             </div>
         </div>
     );
