@@ -6,25 +6,31 @@ export default function Main() {
         <div className='main'>
             <div className='upper'>
                 <label>
-                    DAY
                     <br />
-                    <input type='text'>
+                    <input type='text' placeholder='Hi'>
 
                     </input>
+                    <div className='label'>
+                        DAY
+                    </div>
                 </label>
                 <label>
-                    MONTH
                     <br />
-                    <input type='text'>
+                    <input type='text' placeholder='Hi'>
 
                     </input>
+                    <div className='label'>
+                        MONTH
+                    </div>
                 </label>
                 <label>
-                    YEAR
                     <br />
-                    <input type='text'>
+                    <input type='text' placeholder='Hi'>
 
                     </input>
+                    <div className='label'>
+                        YEAR
+                    </div>
                 </label>
             </div>
             <div className='button-cont'>
