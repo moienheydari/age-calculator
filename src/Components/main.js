@@ -94,16 +94,20 @@ export default function Main() {
 
                     const curDate = new Date();
                     let dif = curDate.getTime() - dateVar.getTime();
-                    dif = Math.floor(dif / (1000 * 60 * 60 * 24)) + 1;
-                    let month = Math.floor(dif / 30);
-                    let day = dif - (month * 30);
-                    let year = Math.floor(month / 12);
-                    month = month - (year * 12);
-                    setShow({
-                        day: day,
-                        month: month,
-                        year: year
-                    })
+                    if (dif < 0) {
+                        alert('Date must be in the past');
+                    } else {
+                        dif = Math.floor(dif / (1000 * 60 * 60 * 24)) + 1;
+                        let month = Math.floor(dif / 30);
+                        let day = dif - (month * 30);
+                        let year = Math.floor(month / 12);
+                        month = month - (year * 12);
+                        setShow({
+                            day: day,
+                            month: month,
+                            year: year
+                        })
+                    }
                 }
                 return {
                     ...prev,
