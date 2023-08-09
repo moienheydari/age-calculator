@@ -6,8 +6,9 @@
 
     .upper {
         margin-right: 150px;
+        margin-left: 10px;
         display: flex;
-        
+
         label {
             text-align: left;
             font-weight: 700;
@@ -19,8 +20,46 @@
                 height: 60px;
                 width: 200px;
                 font-weight: 800;
-                font-size: 30px;
+                font-size: 25px;
                 padding: 10px;
+            }
+        }
+    }
+
+    .button-cont {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-right: 20px;
+
+        button {
+            height: 65px;
+            width: 65px;
+            svg {
+                height: 35px;
+                width: 35px;
+            }
+            background-color: hsl(259, 100%, 65%);
+            border-radius: 100%;
+            border: none;
+            cursor: pointer;
+        }
+    }
+
+    .lower {
+        margin-left: 10px;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        font-weight: 800;
+        font-size: 55px;
+        line-height: 60px;
+        font-style: italic;
+
+        .lower-text {
+
+            .number {
+                color: hsl(259, 100%, 65%);
             }
         }
     }
