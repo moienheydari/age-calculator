@@ -3,8 +3,8 @@
     background-color: hsl(0, 0%, 100%);
     height: fit-content;
     border-radius: 10px 10px 75px 10px;
-    padding: 30px;
-    
+    padding: 40px;
+
     .time-error {
         position: absolute;
         top: -30px;
@@ -21,7 +21,6 @@
 
     .upper {
         margin-right: 150px;
-        margin-left: 10px;
         display: flex;
 
         label {
@@ -30,7 +29,7 @@
             font-weight: 600;
             font-size: 16px;
             color: hsl(0, 1%, 44%);
-            
+
             .label {
                 position: absolute;
                 display: block;
@@ -57,7 +56,7 @@
                 border-radius: 4px;
 
             }
-            
+
             input.number-error {
                 outline: 1px hsl(0, 100%, 67%) solid;
             }
@@ -65,7 +64,7 @@
             input::placeholder {
                 color: transparent;
             }
-            
+
             input:focus~.label,
             input:not(:placeholder-shown)~.label {
                 left: 0px;
@@ -73,7 +72,7 @@
                 font-size: 16px;
             }
 
-            
+
             .error.number-error::after {
                 width: 100px;
                 position: absolute;
@@ -84,7 +83,7 @@
                 font-size: 12px;
                 font-style: italic;
             }
-            
+
             .error {
                 position: absolute;
                 top: 90px;
@@ -95,12 +94,7 @@
             }
 
             .error.rule-error {
-                position: absolute;
-                top: 90px;
-                left: 2px;
                 color: hsl(0, 100%, 67%);
-                font-size: 12px;
-                font-style: italic;
             }
         }
     }
@@ -114,10 +108,12 @@
         button {
             height: 65px;
             width: 65px;
+
             svg {
                 height: 35px;
                 width: 35px;
             }
+
             background-color: hsl(259, 100%, 65%);
             border-radius: 100%;
             border: none;
@@ -137,7 +133,6 @@
     }
 
     .lower {
-        margin-left: 10px;
         display: flex;
         align-items: flex-start;
         flex-direction: column;
@@ -152,5 +147,61 @@
                 color: hsl(259, 100%, 65%);
             }
         }
+    }
+}
+
+
+@media (max-width: 900px) {
+    .main {
+        .upper {
+            margin-right: 0px;
+            margin-left: 0px;
+            margin-bottom: 50px;
+
+                label {
+                    .label {
+                        font-size: 22px;
+                        left: 20px;
+                        top: 36px;  
+                    }
+
+                input {
+                    height: 50px;
+                    width: 160px;
+                    font-size: 22px;  
+                }
+
+                input:focus~.label,
+                input:not(:placeholder-shown)~.label {
+                    left: 2px;
+                }
+
+
+                .error.number-error::after {
+                    width: 100px;
+                    position: absolute;
+                    top: 15px;
+                    left: 0;
+                    content: 'Numbers Only*';
+                    color: hsl(0, 100%, 67%);
+                    font-size: 12px;
+                    font-style: italic;
+                }
+
+                .error {
+                    top: 82px;
+                    left: 2px;
+                }
+            }
+        }
+
+        .button-cont {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+    
+
     }
 }
