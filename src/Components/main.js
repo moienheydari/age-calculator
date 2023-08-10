@@ -24,6 +24,7 @@ export default function Main() {
         month: '--',
         year: '--'
     });
+
     function setRule(name, bool) {
         setDate((prev) => {
             return {
@@ -193,13 +194,13 @@ export default function Main() {
             </div>
             <div className='lower'>
                 <div className='lower-text'>
-                    <p><span className='number number1'>{show.year}</span>years</p>
+                    <p><span className='number number1'>{show.year}</span> years</p>
                 </div>
                 <div className='lower-text'>
-                    <p><span className='number number2'>{show.month}</span>months</p>
+                    <p><span className='number number2'>{show.month}</span> months</p>
                 </div>
                 <div className='lower-text'>
-                    <p><span className='number number3'>{show.day}</span>days</p>
+                    <p><span className='number number3'>{show.day}</span> days</p>
                 </div>
             </div>
         </div>
