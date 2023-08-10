@@ -1,8 +1,23 @@
 .main {
+    position: relative;
     background-color: hsl(0, 0%, 100%);
     height: fit-content;
     border-radius: 10px 10px 75px 10px;
     padding: 30px;
+    
+    .time-error {
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        transform: translate(-50%);
+        color: transparent;
+        font-size: 16px;
+        font-weight: 800;
+    }
+
+    .time-error.show {
+        color: hsl(0, 100%, 67%);
+    }
 
     .upper {
         margin-right: 150px;

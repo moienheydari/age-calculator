@@ -3,6 +3,7 @@ import '../css/main.min.css';
 
 export default function Main() {
     let dateVar;
+    const [timeErr, setTimeErr] = useState(false);
     const [date, setDate] = useState({
         day: '',
         month: '',
@@ -95,8 +96,14 @@ export default function Main() {
                     const curDate = new Date();
                     let dif = curDate.getTime() - dateVar.getTime();
                     if (dif < 0) {
-                        alert('Date must be in the past');
+                        setTimeErr(true);
+                        setShow({
+                            day: '--',
+                            month: '--',
+                            year: '--'
+                        })
                     } else {
+                        setTimeErr(false);
                         dif = Math.floor(dif / (1000 * 60 * 60 * 24)) + 1;
                         let month = Math.floor(dif / 30);
                         let day = dif - (month * 30);
@@ -118,8 +125,6 @@ export default function Main() {
                     }
                 }
             })
-
-
         }, 100);
     }
 
@@ -127,6 +132,7 @@ export default function Main() {
 
     return (
         <div className='main'>
+            <div className={`time-error ${(timeErr) ? 'show' : ''}`}>*Date must be in the past*</div>
             <div className='upper'>
                 <label>
                     <br />
