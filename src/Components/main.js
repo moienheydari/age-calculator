@@ -168,10 +168,8 @@ export default function Main() {
         setDate((prev) => {
             if (Object.values(prev.rule).every(i => { return i; }) && !prev.problem.days) {
                 const curDate = new Date();
-                let dateVar = new Date(`${date.year}-${(date.month < 10) ? `0${date.month}` : date.month}-${(date.day < 10) ? `0${date.day}` : date.day} ${curDate.getHours()}:${curDate.getMinutes()}:${curDate.getSeconds()}:${curDate.getMilliseconds()}`);
+                let dateVar = new Date(date.year, date.month - 1, date.day, curDate.getHours(), curDate.getMinutes(), curDate.getSeconds(), curDate.getMilliseconds());
 
-                console.log(curDate);
-                console.log(dateVar);
                 let dif = curDate.getTime() - dateVar.getTime();
                 if (dif < 0) {
                     setTimeErr(true);
@@ -183,7 +181,6 @@ export default function Main() {
                 } else {
                     setTimeErr(false);
                     let day = Math.floor(dif / (1000 * 60 * 60 * 24));
-                    console.log(day);
                     let year = Math.floor(day / 365);
                     day = day % 365;
                     let month = Math.floor(day / 30);
@@ -227,6 +224,7 @@ export default function Main() {
         timer(intMonth, 'month', month);
         timer(intYear, 'year', year);
     }
+
 
     return (
         <div className='main'>
