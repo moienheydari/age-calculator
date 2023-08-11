@@ -16,7 +16,7 @@ export default function Main() {
             day: true,
             month: true,
             year: true
-        }, 
+        },
         problem: {
             days: '',
             month: ''
@@ -30,7 +30,7 @@ export default function Main() {
 
     function checkMonthRule(Givendate) {
         function checkDays(day, limit) {
-            return (day < limit+1);
+            return (day < limit + 1);
         }
 
         function setDateProblem(day, month) {
@@ -46,51 +46,51 @@ export default function Main() {
         }
 
         switch (parseInt(Givendate.month)) {
-            case 1 : {
+            case 1: {
                 (checkDays(Givendate.day, 31)) ? setDateProblem('', '') : setDateProblem(31, 'January');
                 break;
             }
-            case 2 : {
+            case 2: {
                 (checkDays(Givendate.day, 28)) ? setDateProblem('', '') : setDateProblem(28, 'February');
                 break;
             }
-            case 3 : {
+            case 3: {
                 (checkDays(Givendate.day, 31)) ? setDateProblem('', '') : setDateProblem(31, 'March');
                 break;
             }
-            case 4 : {
+            case 4: {
                 (checkDays(Givendate.day, 30)) ? setDateProblem('', '') : setDateProblem(30, 'April');
                 break;
             }
-            case 5 : {
+            case 5: {
                 (checkDays(Givendate.day, 31)) ? setDateProblem('', '') : setDateProblem(31, 'May');
                 break;
             }
-            case 6 : {
+            case 6: {
                 (checkDays(Givendate.day, 30)) ? setDateProblem('', '') : setDateProblem(30, 'June');
                 break;
             }
-            case 7 : {
+            case 7: {
                 (checkDays(Givendate.day, 31)) ? setDateProblem('', '') : setDateProblem(31, 'July');
                 break;
             }
-            case 8 : {
+            case 8: {
                 (checkDays(Givendate.day, 31)) ? setDateProblem('', '') : setDateProblem(31, 'August');
                 break;
             }
-            case 9 : {
+            case 9: {
                 (checkDays(Givendate.day, 30)) ? setDateProblem('', '') : setDateProblem(30, 'September');
                 break;
             }
-            case 10 : {
+            case 10: {
                 (checkDays(Givendate.day, 31)) ? setDateProblem('', '') : setDateProblem(31, 'October');
                 break;
             }
-            case 11 : {
+            case 11: {
                 (checkDays(Givendate.day, 30)) ? setDateProblem('', '') : setDateProblem(30, 'November');
                 break;
             }
-            case 12 : {
+            case 12: {
                 (checkDays(Givendate.day, 31)) ? setDateProblem('', '') : setDateProblem(31, 'December');
                 break;
             }
@@ -160,7 +160,7 @@ export default function Main() {
             ruleCheck();
         }
 
-        
+
     }
 
     function handleClick() {
@@ -188,11 +188,7 @@ export default function Main() {
                     day = day % 365;
                     let month = Math.floor(day / 30);
                     day = day % 30;
-                    setShow({
-                        day: day,
-                        month: month,
-                        year: year
-                    })
+                    incrementShow(day, month, year);
                 }
             }
             return {
@@ -207,6 +203,30 @@ export default function Main() {
     }
 
 
+    function incrementShow(day, month, year) {
+        let intDay = 0;
+        let intMonth = 0;
+        let intYear = 0;
+
+        function timer(int, key, amount) {
+            setTimeout(() => {
+                setShow((prev) => {
+                    return {
+                        ...prev,
+                        [key]: int
+                    }
+                });
+                int++;
+                if (int < amount) {
+                    timer(int, key, amount);
+                }
+            }, (800 / amount));
+        }
+
+        timer(intDay, 'day', day);
+        timer(intMonth, 'month', month);
+        timer(intYear, 'year', year);
+    }
 
     return (
         <div className='main'>
