@@ -16,6 +16,10 @@ export default function Main() {
             day: true,
             month: true,
             year: true
+        }, 
+        problem: {
+            days: '',
+            month: ''
         }
     });
     const [show, setShow] = useState({
@@ -23,6 +27,75 @@ export default function Main() {
         month: '--',
         year: '--'
     });
+
+    function checkMonthRule(Givendate) {
+        function checkDays(day, limit) {
+            return (day < limit+1);
+        }
+
+        function setDateProblem(day, month) {
+            setDate((prev) => {
+                return {
+                    ...prev,
+                    problem: {
+                        days: day,
+                        month: month
+                    }
+                }
+            })
+        }
+
+        switch (parseInt(Givendate.month)) {
+            case 1 : {
+                (checkDays(Givendate.day, 31)) ? setDateProblem('', '') : setDateProblem(31, 'January');
+                break;
+            }
+            case 2 : {
+                (checkDays(Givendate.day, 28)) ? setDateProblem('', '') : setDateProblem(28, 'February');
+                break;
+            }
+            case 3 : {
+                (checkDays(Givendate.day, 31)) ? setDateProblem('', '') : setDateProblem(31, 'March');
+                break;
+            }
+            case 4 : {
+                (checkDays(Givendate.day, 30)) ? setDateProblem('', '') : setDateProblem(30, 'April');
+                break;
+            }
+            case 5 : {
+                (checkDays(Givendate.day, 31)) ? setDateProblem('', '') : setDateProblem(31, 'May');
+                break;
+            }
+            case 6 : {
+                (checkDays(Givendate.day, 30)) ? setDateProblem('', '') : setDateProblem(30, 'June');
+                break;
+            }
+            case 7 : {
+                (checkDays(Givendate.day, 31)) ? setDateProblem('', '') : setDateProblem(31, 'July');
+                break;
+            }
+            case 8 : {
+                (checkDays(Givendate.day, 31)) ? setDateProblem('', '') : setDateProblem(31, 'August');
+                break;
+            }
+            case 9 : {
+                (checkDays(Givendate.day, 30)) ? setDateProblem('', '') : setDateProblem(30, 'September');
+                break;
+            }
+            case 10 : {
+                (checkDays(Givendate.day, 31)) ? setDateProblem('', '') : setDateProblem(31, 'October');
+                break;
+            }
+            case 11 : {
+                (checkDays(Givendate.day, 30)) ? setDateProblem('', '') : setDateProblem(30, 'November');
+                break;
+            }
+            case 12 : {
+                (checkDays(Givendate.day, 31)) ? setDateProblem('', '') : setDateProblem(31, 'December');
+                break;
+            }
+        }
+    }
 
     function setRule(prev, name, bool) {
         return {
@@ -70,6 +143,10 @@ export default function Main() {
 
         setDate((prev) => {
             if (prev.valid[target.name]) {
+                checkMonthRule({
+                    ...prev,
+                    [target.name]: target.value
+                });
                 return {
                     ...prev,
                     [target.name]: target.value
@@ -82,12 +159,14 @@ export default function Main() {
         if (!date.rule[target.name]) {
             ruleCheck();
         }
+
+        
     }
 
     function handleClick() {
         ruleCheck();
         setDate((prev) => {
-            if (Object.values(prev.rule).every(i => { return i; })) {
+            if (Object.values(prev.rule).every(i => { return i; }) && !prev.problem.days) {
                 const curDate = new Date();
                 let dateVar = new Date(`${date.year}-${(date.month < 10) ? `0${date.month}` : date.month}-${(date.day < 10) ? `0${date.day}` : date.day} ${curDate.getHours()}:${curDate.getMinutes()}:${curDate.getSeconds()}:${curDate.getMilliseconds()}`);
 
@@ -131,6 +210,7 @@ export default function Main() {
 
     return (
         <div className='main'>
+            <div className={`time-error ${(date.problem.days) ? 'show' : ''}`}>*There are {date.problem.days} days in {date.problem.month}*</div>
             <div className={`time-error ${(timeErr) ? 'show' : ''}`}>*Date must be in the past*</div>
             <div className='upper'>
                 <label>
