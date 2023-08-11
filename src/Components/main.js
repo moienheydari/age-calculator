@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import '../css/main.min.css';
 
 export default function Main() {
-    let dateVar;
     const [timeErr, setTimeErr] = useState(false);
     const [date, setDate] = useState({
         day: '',
@@ -25,23 +24,21 @@ export default function Main() {
         year: '--'
     });
 
-    function setRule(name, bool) {
-        setDate((prev) => {
-            return {
-                ...prev,
-                rule: {
-                    ...prev.rule,
-                    [name]: bool
-                }
+    function setRule(prev, name, bool) {
+        return {
+            ...prev,
+            rule: {
+                ...prev.rule,
+                [name]: bool
             }
-        })
+        }
     }
 
     function ruleCheck() {
         setDate((prev) => {
-            (prev.day < 32 && prev.day > 0) ? setRule('day', true) : setRule('day', false);
-            (prev.month < 13 && prev.month > 0) ? setRule('month', true) : setRule('month', false);
-            (prev.year < 2024 && prev.year > 0) ? setRule('year', true) : setRule('year', false);
+            (prev.day < 32 && prev.day > 0) ? prev = setRule(prev, 'day', true) : prev = setRule(prev, 'day', false);
+            (prev.month < 13 && prev.month > 0) ? prev = setRule(prev, 'month', true) : prev = setRule(prev, 'month', false);
+            (prev.year < 2024 && prev.year > 0) ? prev = setRule(prev, 'year', true) : prev = setRule(prev, 'year', false);
             return prev;
         })
     }
@@ -89,44 +86,45 @@ export default function Main() {
 
     function handleClick() {
         ruleCheck();
-        setTimeout(() => {
-            setDate((prev) => {
-                if (Object.values(prev.rule).every(i => { return i; })) {
-                    dateVar = new Date(`${date.year}-${(date.month < 10) ? `0${date.month}` : date.month}-${(date.day < 10) ? `0${date.day}` : date.day}`);
+        setDate((prev) => {
+            if (Object.values(prev.rule).every(i => { return i; })) {
+                const curDate = new Date();
+                let dateVar = new Date(`${date.year}-${(date.month < 10) ? `0${date.month}` : date.month}-${(date.day < 10) ? `0${date.day}` : date.day} ${curDate.getHours()}:${curDate.getMinutes()}:${curDate.getSeconds()}:${curDate.getMilliseconds()}`);
 
-                    const curDate = new Date();
-                    let dif = curDate.getTime() - dateVar.getTime();
-                    if (dif < 0) {
-                        setTimeErr(true);
-                        setShow({
-                            day: '--',
-                            month: '--',
-                            year: '--'
-                        })
-                    } else {
-                        setTimeErr(false);
-                        dif = Math.floor(dif / (1000 * 60 * 60 * 24)) + 1;
-                        let month = Math.floor(dif / 30);
-                        let day = dif - (month * 30);
-                        let year = Math.floor(month / 12);
-                        month = month - (year * 12);
-                        setShow({
-                            day: day,
-                            month: month,
-                            year: year
-                        })
-                    }
+                console.log(curDate);
+                console.log(dateVar);
+                let dif = curDate.getTime() - dateVar.getTime();
+                if (dif < 0) {
+                    setTimeErr(true);
+                    setShow({
+                        day: '--',
+                        month: '--',
+                        year: '--'
+                    })
+                } else {
+                    setTimeErr(false);
+                    let day = Math.floor(dif / (1000 * 60 * 60 * 24));
+                    console.log(day);
+                    let year = Math.floor(day / 365);
+                    day = day % 365;
+                    let month = Math.floor(day / 30);
+                    day = day % 30;
+                    setShow({
+                        day: day,
+                        month: month,
+                        year: year
+                    })
                 }
-                return {
-                    ...prev,
-                    valid: {
-                        day: true,
-                        month: true,
-                        year: true
-                    }
+            }
+            return {
+                ...prev,
+                valid: {
+                    day: true,
+                    month: true,
+                    year: true
                 }
-            })
-        }, 100);
+            }
+        });
     }
 
 
@@ -189,7 +187,7 @@ export default function Main() {
             </div>
             <div className='button-cont'>
                 <button onClick={handleClick}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="46" height="44" viewBox="0 0 46 44"><g fill="none" stroke="#FFF" stroke-width="2"><path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44" /></g></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="46" height="44" viewBox="0 0 46 44"><g fill="none" stroke="#FFF" strokeWidth="2"><path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44" /></g></svg>
                 </button>
             </div>
             <div className='lower'>
